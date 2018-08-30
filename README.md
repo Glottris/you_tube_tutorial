@@ -134,7 +134,7 @@ Before we continue, lets start with thinking of our component structure.
 Our goal is something like this;
 
 
-![alt text](/assets/mockup.jpg. "Mock-up")
+![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Mockup.jpg "Mock-up")
 
 
 
