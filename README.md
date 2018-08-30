@@ -38,8 +38,96 @@ this initiates new project with our chosen name, lets go inside and have a look
 ```
 App.js is the main file of out app, there are 2 folders for android and ios projects. 
 
-import to editor of choice.
+import to android studio
 start emulator
-react-native run-android || or react-native run-ios
+```
+> npm start
+> adb reverse tcp:8081 tcp:8081
 
-solve errors? mush better to use Expo maybe...
+> adb shell input keyevent 82 (or shake phone?)
+
+// on Phone 
+// Dev Settings > set IP and port of the local dev server to:
+// 10.0.1.1:8081 example in error message
+```
+
+With any luck you can now edit App.js and see updates on your phone or emulator. The app is equivalent of hello wold it just prints some text.
+edit it to test hot re-load. 
+
+App.js looks something like this
+``` javascript
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
+
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+
+const instructions = Platform.select({
+  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  android:
+    'Double tap R on your keyboard to reload,\n' +
+    'Shake or press menu button for dev menu',
+});
+
+type Props = {};
+export default class App extends Component<Props> {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>{instructions}</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
+``` 
+Lets clean it up a little before we start be deleting the comment, the instructions and the StyleSheet data,
+it should look something like this:
+``` javascript
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+
+type Props = {};
+export default class App extends Component<Props> {
+  render() {
+    return (
+      <View>
+        <Text>edited!</Text>
+      </View>
+    );
+  }
+}
+const styles = StyleSheet.create({
+});
+```
+Now what we have left is:
+* imports of the most basic react-native elements
+* we export a default class component that contains a render function with some text in a view
+* an empty styles constant
+
+Before we continue, lets start with thinking of our component structure.
