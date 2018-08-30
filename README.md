@@ -117,7 +117,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View>
-        <Text>edited!</Text>
+        <Text>Hello edited!</Text>
       </View>
     );
   }
@@ -131,3 +131,12 @@ Now what we have left is:
 * an empty styles constant
 
 Before we continue, lets start with thinking of our component structure.
+Our goal is something like this;
+
+
+![alt text](/assets/mockup.jpg. "Mock-up")
+
+
+
+A scrolling list of videos, with some title information and an app header,
+and if a video is kicked we should go to a different view where it is played in full-screen, here we should be able to go back using the 'back button' is it called that? the guy without a smartphone is writing a tutorial here Kappa.
