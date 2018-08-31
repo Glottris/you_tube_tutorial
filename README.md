@@ -132,15 +132,23 @@ Now what we have left is:
 
 Before we continue, lets start with thinking of our component structure.
 Our goal is something like this;
-
-
-![alt text](you_tube_tutorial/assets/Mockup.jpg "Mock-up")
-![alt text](https://github.com/Glottris/you_tube_tutorial/master/assets/Mockup.jpg "Mock-up")
 ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Mockup.jpg "Mock-up")
-
-https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Mockup.jpg
-
-
-
 A scrolling list of videos, with some title information and an app header,
 and if a video is kicked we should go to a different view where it is played in full-screen, here we should be able to go back using the 'back button' is it called that? the guy without a smartphone is writing a tutorial here Kappa.
+
+lets start with the deepest element and also the information we need to got from somewhere the video.
+Here we could use a webView and a regular youtube embed link, 
+we will however use a react-native package called react-native-youtube
+https://www.npmjs.com/package/react-native-youtube
+
+let go ahead and add it to our project
+```bash 
+> yarn add react-native-youtube //npm install reac...
+> react-native link
+```
+and in App.js add:
+``` javascript
+import { YouTube } from 'react-native-youtube';
+```
+
+
