@@ -137,7 +137,7 @@ Our goal is something like this;
 A scrolling list of videos, with some title information and an app header,
 and if a video is kicked we should go to a different view where it is played in full-screen, here we should be able to go back using the 'back button' is it called that? the guy without a smartphone is writing a tutorial here Kappa.
 
-lets start with the deepest element and also the information we need to got from somewhere the video.
+Lets start with the deepest element and also the information we need to get from somewhere the video.
 Here we could use a webView and a regular youtube embed link, 
 but we will use a react-native package called react-native-youtube
 https://www.npmjs.com/package/react-native-youtube
@@ -151,6 +151,25 @@ let go ahead and install these packages in our project
 and in App.js add:
 ``` javascript
 import { YouTube } from 'react-native-youtube';
+import { createStackNavigator } from 'react-navigation';
 ```
 
+now we need to get the video data from youtube, here we will use the youTube.v3 API key.
+We need to create a URL to fetch the information from the API
+copy the URL bellow and insert you API key where it says 'INSERT_API_KEY_HERE' in friendly text.
+```
+> https://www.googleapis.com/youtube/v3/search/?key=INSERT_API_KEY_HERE&channelId=UCYGRnZ50MyvueoDN_Vo2PHA&part=snippet,id&order=date&maxResults=4
+```
+go ahead an paste the resulting link in a browser to see how the data we get back from youtube is structured.
 
+The other variables in the URL are; channelId, part, id&order, maxResults.
+Lets add some const variables to hold these for now, bellow our imports.
+I have used acorns channelId in the example bellow.
+``` javascript
+const apiKey = 'INSERT_API_KEY_HERE';
+const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
+const maxResults = '4';
+```
+
+We will use the componentDidMount method that is automatically run after a component is mounted.
+https://reactjs.org/docs/react-component.html#componentdidmount
