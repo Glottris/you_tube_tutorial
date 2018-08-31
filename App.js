@@ -9,8 +9,23 @@ const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
 const maxResults = '4';
 
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = { data: [] }
+  }
+
+  componentDidMount(){
+    fetch('https://www.googleapis.com/youtube/v3/search/?key='+apiKey+'&channelId='+channelId+'&part=snippet,id&order=date&maxResults=' + maxResults )
+    .then(res => res.json())
+    .then(res => {
+      const videoId = []
+      res.items.forEach(item => { videoId.push(item) })
+      this.setState({ data: videoId })
+    })
+    .catch(error => { console.error(error) })
+  }
+
   render() {
     return (
       <View>

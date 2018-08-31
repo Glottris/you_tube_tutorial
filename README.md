@@ -171,5 +171,45 @@ const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
 const maxResults = '4';
 ```
 
-We will use the componentDidMount method that is automatically run after a component is mounted.
+Next we will use the componentDidMount method that is automatically run after a component is mounted.
 https://reactjs.org/docs/react-component.html#componentdidmount
+
+Inside this function we will use Fetch api that is provided by react-native, https://facebook.github.io/react-native/docs/network
+
+
+edit your App component to look like this:
+``` javascript
+export default class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = { data: [] }
+  }
+
+  componentDidMount(){
+    fetch('https://www.googleapis.com/youtube/v3/search/?key='+apiKey+'&channelId='+channelId+'&part=snippet,id&order=date&maxResults=' + maxResults )
+    .then(res => res.json())
+    .then(res => {
+      const videoId = []
+      res.items.forEach(item => { videoId.push(item) })
+      this.setState({ data: videoId })
+    })
+    .catch(error => { console.error(error) })
+  }
+
+  render() {
+    return (
+      <View>
+        <Text>still works!</Text>
+      </View>
+    );
+  }
+}
+
+```
+We setup a constructor where we set the state to take a data array.
+state is used for data that will change in the app and when updated will trigger a re-render.
+
+after fetching that is an asynchronous action we populate a list of the items from the json, then we update the state thru the setState function, this will trigger a re-render of the component.
+
+Now we need to add something to our render function to see it on our device. 
+
