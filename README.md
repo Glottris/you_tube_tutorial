@@ -176,3 +176,43 @@ And the 'key' attribute is just to avoid a warning.
 
 Here we use the JavaScript map function to access the data, we cant access it directly since we don't know if the JSON data is loaded or not. So when the state change this will re render and the function will return a new result, but with no data map will return nothing.
 
+Lets start adjusting our layout,  
+```javascript
+  render() {
+    return (
+      <View style={styles.body}>
+        <Text>still works!</Text>
+        {this.state.data.map((item, i) =>
+          <View
+            style={styles.videos}
+            key={item.id.videoId}>
+            <Image
+              source={{uri: item.snippet.thumbnails.medium.url}}
+              style={{width: 320, height: 180}}/>
+          </View>
+        )}
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  videos: {
+    paddingBottom: 30,
+    width: 320,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    borderBottomWidth: 0.6,
+    borderColor: '#aaa'
+  },
+});
+```
+We center align our whole app using a new style on our top View element.
+We make a new View element around the Image,  and put some padding between our video thumbnails. (the key warning is back so we move it to the top element returned by the map function)
+

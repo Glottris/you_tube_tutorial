@@ -28,13 +28,16 @@ export default class App extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.body}>
         <Text>still works!</Text>
         {this.state.data.map((item, i) =>
-        <Image
-          key={item.id.videoId}
-          source={{uri: item.snippet.thumbnails.medium.url}}
-          style={{width: 320, height: 180}}/>
+          <View
+            style={styles.videos}
+            key={item.id.videoId}>
+            <Image
+              source={{uri: item.snippet.thumbnails.medium.url}}
+              style={{width: 320, height: 180}}/>
+          </View>
         )}
       </View>
     );
@@ -42,5 +45,18 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-
+  body: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  videos: {
+    paddingBottom: 30,
+    width: 320,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    borderBottomWidth: 0.6,
+    borderColor: '#aaa'
+  },
 });
