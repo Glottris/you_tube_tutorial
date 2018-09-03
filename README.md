@@ -182,15 +182,17 @@ Lets start adjusting our layout,
     return (
       <View style={styles.body}>
         <Text>still works!</Text>
-        {this.state.data.map((item, i) =>
-          <View
-            style={styles.videos}
-            key={item.id.videoId}>
-            <Image
-              source={{uri: item.snippet.thumbnails.medium.url}}
-              style={{width: 320, height: 180}}/>
-          </View>
-        )}
+        <ScrollView>
+          {this.state.data.map((item, i) =>
+            <View
+              style={styles.videos}
+              key={item.id.videoId}>
+              <Image
+                source={{uri: item.snippet.thumbnails.medium.url}}
+                style={{width: 320, height: 180}}/>
+            </View>
+          )}
+        </ScrollView>
       </View>
     );
   }
@@ -211,8 +213,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.6,
     borderColor: '#aaa'
   },
+  videoItems: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    padding: 10
+  },
+  videoText: {
+    padding: 20,
+    color: '#000'
+  },
 });
 ```
-We center align our whole app using a new style on our top View element.
-We make a new View element around the Image,  and put some padding between our video thumbnails. (the key warning is back so we move it to the top element returned by the map function)
+We center align our whole app using a new style on our top View element. Make a new View element around the Image,  and put some padding between our video thumbnails. (the key warning is back so we move it to the top element returned by the map function)
+We also add the new objects to our styles constant and two unused formats videoItems and videoText that will be used for the video information bellow each video.
+
+We also add a scrollView that you will have to import from react-native
 

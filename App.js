@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import { YouTube } from 'react-native-youtube';
 import { createStackNavigator } from 'react-navigation';
 
@@ -30,15 +30,17 @@ export default class App extends Component {
     return (
       <View style={styles.body}>
         <Text>still works!</Text>
-        {this.state.data.map((item, i) =>
-          <View
-            style={styles.videos}
-            key={item.id.videoId}>
-            <Image
-              source={{uri: item.snippet.thumbnails.medium.url}}
-              style={{width: 320, height: 180}}/>
-          </View>
-        )}
+        <ScrollView>
+          {this.state.data.map((item, i) =>
+            <View
+              style={styles.videos}
+              key={item.id.videoId}>
+              <Image
+                source={{uri: item.snippet.thumbnails.medium.url}}
+                style={{width: 320, height: 180}}/>
+            </View>
+          )}
+        </ScrollView>
       </View>
     );
   }
@@ -58,5 +60,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomWidth: 0.6,
     borderColor: '#aaa'
+  },
+  videoItems: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    padding: 10
+  },
+  videoText: {
+    padding: 20,
+    color: '#000'
   },
 });
