@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import { YouTube } from 'react-native-youtube';
 import { createStackNavigator } from 'react-navigation';
 
@@ -30,6 +30,12 @@ export default class App extends Component {
     return (
       <View>
         <Text>still works!</Text>
+        {this.state.data.map((item, i) =>
+        <Image
+          key={item.id.videoId}
+          source={{uri: item.snippet.thumbnails.medium.url}}
+          style={{width: 320, height: 180}}/>
+        )}
       </View>
     );
   }

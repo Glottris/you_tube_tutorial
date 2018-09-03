@@ -42,71 +42,20 @@ import to android studio
 start emulator
 ```
 > npm start
-> adb reverse tcp:8081 tcp:8081
-
+>
 > adb shell input keyevent 82 (or shake phone?)
+// and enable hot reloade
 
-// on Phone 
+// may need
+// adb reverse tcp:8081 tcp:8081
 // Dev Settings > set IP and port of the local dev server to:
 // 10.0.1.1:8081 example in error message
 ```
-
+## Hello world...
 With any luck you can now edit App.js and see updates on your phone or emulator. The app is equivalent of hello wold it just prints some text.
-edit it to test hot re-load. 
+Take a look at App.js and edit something to test hot re-load. 
 
-App.js looks something like this
-``` javascript
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-``` 
-Lets clean it up a little before we start be deleting the comment, the instructions and the StyleSheet data,
+Lets clean it up a little before we start, delete the comment, the instructions and the StyleSheet data,
 it should look something like this:
 ``` javascript
 import React, {Component} from 'react';
@@ -130,6 +79,7 @@ Now what we have left is:
 * we export a default class component that contains a render function with some text in a view
 * an empty styles constant
 
+## Component structure
 Before we continue, lets start with thinking of our component structure.
 Our goal is something like this;
 ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Mockup.jpg "Mock-up")
@@ -163,8 +113,7 @@ copy the URL bellow and insert you API key where it says 'INSERT_API_KEY_HERE' i
 go ahead an paste the resulting link in a browser to see how the data we get back from youtube is structured.
 
 The other variables in the URL are; channelId, part, id&order, maxResults.
-Lets add some const variables to hold these for now, bellow our imports.
-I have used acorns channelId in the example bellow.
+Lets add some const variables to hold these for now, bellow our imports. I have used acorns channelId in the example bellow.
 ``` javascript
 const apiKey = 'INSERT_API_KEY_HERE';
 const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
@@ -211,5 +160,19 @@ state is used for data that will change in the app and when updated will trigger
 
 after fetching that is an asynchronous action we populate a list of the items from the json, then we update the state thru the setState function, this will trigger a re-render of the component.
 
-Now we need to add something to our render function to see it on our device. 
+Now we need to add something to our render function to see it on our device.  Lets add the thumbnail image from the fetched data.
+
+In the render function things inside curly-brackets are run as JavaScript. After the text tag add the following:
+``` javascript
+{this.state.data.map((item, i) =>
+ <Image
+   key={item.id.videoId}
+   source={{uri: item.snippet.thumbnails.medium.url}}
+   style={{width: 320, height: 180}}/>
+)}
+```
+You will also need to import the 'Image' element from react-native.
+And the 'key' attribute is just to avoid a warning.
+
+Here we use the JavaScript map function to access the data, we cant access it directly since we don't know if the JSON data is loaded or not. So when the state change this will re render and the function will return a new result, but with no data map will return nothing.
 
