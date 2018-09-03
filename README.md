@@ -88,6 +88,8 @@ A scrolling list of videos, with some title information and an app header,
 and if a video is kicked we should go to a different view where it is played in full-screen, here we should be able to go back using the 'back button' is it called that? the guy without a smartphone is writing a tutorial here Kappa.
 
 Lets start with the deepest element and also the information we need to get from somewhere the video.
+
+## Getting Video Information
 Here we could use a webView and a regular youtube embed link, 
 but we will use a react-native package called react-native-youtube
 https://www.npmjs.com/package/react-native-youtube
@@ -106,7 +108,7 @@ import { createStackNavigator } from 'react-navigation';
 
 now we need to get the video data from youtube, here we will use the youTube.v3 API key.
 We need to create a URL to fetch the information from the API
-copy the URL bellow and insert you API key where it says 'INSERT_API_KEY_HERE' in friendly text.
+copy the URL bellow and insert you API key where it says **'INSERT_API_KEY_HERE'** in friendly text.
 ```
 > https://www.googleapis.com/youtube/v3/search/?key=INSERT_API_KEY_HERE&channelId=UCYGRnZ50MyvueoDN_Vo2PHA&part=snippet,id&order=date&maxResults=4
 ```
@@ -120,11 +122,10 @@ const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
 const maxResults = '4';
 ```
 
-Next we will use the componentDidMount method that is automatically run after a component is mounted.
+Next we will use the **componentDidMount** method that is automatically run after a component is mounted.
 https://reactjs.org/docs/react-component.html#componentdidmount
 
 Inside this function we will use Fetch api that is provided by react-native, https://facebook.github.io/react-native/docs/network
-
 
 edit your App component to look like this:
 ``` javascript
@@ -176,7 +177,8 @@ And the 'key' attribute is just to avoid a warning.
 
 Here we use the JavaScript map function to access the data, we cant access it directly since we don't know if the JSON data is loaded or not. So when the state change this will re render and the function will return a new result, but with no data map will return nothing.
 
-Lets start adjusting our layout,  
+## Layout
+Lets start adjusting our layout,  and add a **scrollView** ==*that we need to import from react-native.*==
 ```javascript
   render() {
     return (
@@ -226,7 +228,5 @@ const styles = StyleSheet.create({
 });
 ```
 We center align our whole app using a new style on our top View element. Make a new View element around the Image,  and put some padding between our video thumbnails. (the key warning is back so we move it to the top element returned by the map function)
-We also add the new objects to our styles constant and two unused formats videoItems and videoText that will be used for the video information bellow each video.
-
-We also add a scrollView that you will have to import from react-native
+We also add the new objects to our styles constant and two unused formats **videoItems** and **videoText** that will be used for the video information bellow each video.
 
