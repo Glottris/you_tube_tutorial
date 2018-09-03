@@ -231,3 +231,22 @@ We center align our whole app using a new style on our top View element. Make a 
 We also add the new objects to our styles constant and two unused formats **videoItems** and **videoText** that will be used for the video information bellow each video.
 ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example.JPG "Exsample")
 
+### Video info
+create a new folder for assess in you project save this icon: ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/icon.jpg "Acorn-icon")
+Add this new view under the video thumbnail image tag.
+```javascript
+              <View style={styles.videoItems}>
+                <Image
+                  source={require('./assets/icon.jpg')}
+                  style={{width:30, height:30, borderRadius: 20, marginRight: 5}}/>
+                <Text style={styles.videoText}>
+                  {item.snippet.title}
+                </Text>
+              </View>
+```
+now it should look something like this:
+![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example2.JPG "Exsample2")
+
+## Klick to play video
+...
+

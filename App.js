@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View, Image, ScrollView} from 'react-native'
 import { YouTube } from 'react-native-youtube';
 import { createStackNavigator } from 'react-navigation';
 
-const apiKey = 'YOURKEYHERE';
+const apiKey = 'AIzaSyDNuniWTHCHeuq4ZxK-WWbO0pENHYMMCMs';
 const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
 const maxResults = '4';
 
@@ -38,6 +38,14 @@ export default class App extends Component {
               <Image
                 source={{uri: item.snippet.thumbnails.medium.url}}
                 style={{width: 320, height: 180}}/>
+              <View style={styles.videoItems}>
+                <Image
+                  source={require('./assets/icon.jpg')}
+                  style={{width:30, height:30, borderRadius: 20, marginRight: 5}}/>
+                <Text style={styles.videoText}>
+                  {item.snippet.title}
+                </Text>
+              </View>
             </View>
           )}
         </ScrollView>
