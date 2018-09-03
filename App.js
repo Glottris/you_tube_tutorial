@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View, Image, ScrollView} from 'react-native'
 import { YouTube } from 'react-native-youtube';
 import { createStackNavigator } from 'react-navigation';
 
-const apiKey = 'AIzaSyDNuniWTHCHeuq4ZxK-WWbO0pENHYMMCMs';
+const apiKey = 'YOURKEYHERE';
 const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
 const maxResults = '4';
 

@@ -229,4 +229,5 @@ const styles = StyleSheet.create({
 ```
 We center align our whole app using a new style on our top View element. Make a new View element around the Image,  and put some padding between our video thumbnails. (the key warning is back so we move it to the top element returned by the map function)
 We also add the new objects to our styles constant and two unused formats **videoItems** and **videoText** that will be used for the video information bellow each video.
+![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example.JPG "Exsample")
 
