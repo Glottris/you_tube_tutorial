@@ -17,7 +17,6 @@ https://github.com/appsupport-at-acorn/react-and-rn-intro/blob/master/tutorial/r
 ## Setup
 In your shell of preference at the location you wish to store the project run the following
 ``` bash
-//install react native globaly?needed
 > npm install -g react-native-cli
 
 > yarn install
@@ -39,8 +38,7 @@ this initiates new project with our chosen name, lets go inside and have a look
 ```
 App.js is the main file of out app, there are 2 folders for android and ios projects. 
 
-import to android studio
-start emulator
+you can import the android project into android studio and start an emulator from there or use `react-native run-android`
 ```
 > npm start
 >
@@ -353,10 +351,19 @@ Go back to YouTubeVideo.js and change VideoId to get the Id from props
 ```javascript
 videoId={this.props.navigation.state.params.youtubeId}
 ```
+Now my app look like this.
 
-DONE!?
+![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example3.JPG "Example3")
+
+The react-navigate plugin have given us a empty header, lets see how we can put something in it.
+
+
 TODO?
 add search bar??
+tab bar, I tried some to get something into the navigator header, but alas nothing but failure.
 Navigation ads a empty header, should put something or remove it?
+
+all based on this:
+https://medium.com/react-native-training/react-native-youtube-replica-f378200d91f0
 
 

@@ -31,7 +31,7 @@ class App extends Component {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.body}>
-        <Text>still works!</Text>
+        <Text>still worksks!</Text>
         <ScrollView>
           {this.state.data.map((item, i) =>
             <TouchableHighlight
