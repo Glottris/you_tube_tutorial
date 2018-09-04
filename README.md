@@ -249,3 +249,50 @@ now it should look something like this:
 
 ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example2.JPG "Exsample2")
 
+
+
+## Klick to play video
+In this part we make klicking the thumbnail play the video in full-screen, and we add navigation so pressing the innate 'back button' will return you to the main screen of our app.
+Start by creating a new file, I called mine YouTubeVideo.js
+it looks like this:
+```javascript
+import React from 'react'
+import { StyleSheet, View } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import YouTube from 'react-native-youtube';
+
+export class YouTubeVideo extends React.Component{
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <YouTube
+          videoId="KVZ-P-ZI6W4"   // The YouTube video ID
+          play={true}             // control playback of video with true/false
+          fullscreen={true}       // control whether the video should play in fullscreen or inline
+          loop={false}            // control whether the video should loop when ended
+          apiKey={'YOUR_API_KEY_HERE'}
+          onReady={e => this.setState({ isReady: true })}
+          onChangeState={e => this.setState({ status: e.state })}
+          onChangeQuality={e => this.setState({ quality: e.quality })}
+          onError={e => this.setState({ error: e.error })}
+          style={{ alignSelf: 'stretch', height: 300 }}
+        />
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff'
+  }
+})
+```
+We import the YouTube element from **react-native-youtube** that we installed in the beginning. We copy a object template from usage on this page: https://www.npmjs.com/package/react-native-youtube
+And add the API key element. The videoId is just an example for now we need to pass the videoId from our app element.
+All inside a view with a basic container style.
+
