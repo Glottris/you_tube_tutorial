@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,  WebView, Platform , Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View,  WebView, Platform , Image, ScrollView, TouchableHighlight } from 'react-native';
 import { YouTube } from 'react-native-youtube';
 import { createStackNavigator } from 'react-navigation';
 import { YouTubeVideo } from './YouTubeVideo'
@@ -34,21 +34,23 @@ class App extends Component {
         <Text>still works!</Text>
         <ScrollView>
           {this.state.data.map((item, i) =>
-            <View
-              style={styles.videos}
-              key={item.id.videoId}>
-              <Image
-                source={{uri: item.snippet.thumbnails.medium.url}}
-                style={{width: 320, height: 180}}/>
-              <View style={styles.videoItems}>
+            <TouchableHighlight
+              key={item.id.videoId}
+              onPress={() => navigate('YouTubeVideo', {youtubeId: item.id.videoId})}>
+              <View style={styles.videos}>
                 <Image
-                  source={require('./assets/icon.jpg')}
-                  style={{width:30, height:30, borderRadius: 20, marginRight: 5}}/>
-                <Text style={styles.videoText}>
-                  {item.snippet.title}
-                </Text>
+                  source={{uri: item.snippet.thumbnails.medium.url}}
+                  style={{width: 320, height: 180}}/>
+                <View style={styles.videoItems}>
+                  <Image
+                    source={require('./assets/icon.jpg')}
+                    style={{width:30, height:30, borderRadius: 20, marginRight: 5}}/>
+                  <Text style={styles.videoText}>
+                    {item.snippet.title}
+                  </Text>
+                </View>
               </View>
-            </View>
+            </TouchableHighlight>
           )}
         </ScrollView>
       </View>

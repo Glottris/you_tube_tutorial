@@ -1,3 +1,4 @@
+
 # React-Native you_tube_tutorial
 ## Overview
 This tutorial will go thru step by step how to make a video app that browse YouTube, using react-native, react-native extensions: React Navigation and YouTube API.v3
@@ -293,23 +294,69 @@ const styles = StyleSheet.create({
 })
 ```
 We import the YouTube element from **react-native-youtube** that we installed in the beginning. We copy a object template from usage on this page: https://www.npmjs.com/package/react-native-youtube
-And add the API key element. All inside a view with a basic container style. The videoId is just an example for now we need to pass the videoId from our app element.
+And add the API key element. All inside a view with a basic container style. The videoId is just an example for now we need to pass the videoId from our app element. 
 
-Before we do that add a static navigationOption in our component above our render function, setting our screen title to YouTube since we are going to use react-navigation.
-```javascript
-  static navigationOption = {
-    headerTitle: 'YouTube',
-    headerStyle: {
-      backgroundColor: '#000'
-    },
-    headerTitleStyle: {
-      color: '#fff'
-    }
-  }
-```
 Now lets go back to App.js and import our new component
 ```javascript
 import { YouTubeVideo } from './YouTubeVideo'
 ```
+and also add **TouchableHighlight ** to our react-native imports, we will use this to make the video thumbnail clickable.
+```javascript
+import { StyleSheet, Text, View,  WebView, Platform , Image, ScrollView, TouchableHighlight } from 'react-native';
+```
+
+### Navigation
+To use the navigation plugin we need remove `export default` from our App class and add export the following code instead.
+put this bellow our styles constant.
+```javascript
+export default screens = createStackNavigator({
+  Home: { screen: App },
+  YouTubeVideo: { screen: YouTubeVideo }
+});
+```
+
+Okay, the last step is to change the render function, adding TuchableHighlight and an onPress function using the nagvigate plugin.
+```javascript
+render() {
+    const {navigate} = this.props.navigation;
+    return (
+      <View style={styles.body}>
+        <ScrollView>
+          {this.state.data.map((item, i) =>
+            <TouchableHighlight
+              key={item.id.videoId}
+              onPress={() => navigate('YouTubeVideo', {youtubeId: item.id.videoId})}>
+              <View style={styles.videos}>
+                <Image
+                  source={{uri: item.snippet.thumbnails.medium.url}}
+                  style={{width: 320, height: 180}}/>
+                <View style={styles.videoItems}>
+                  <Image
+                    source={require('./assets/icon.jpg')}
+                    style={{width:30, height:30, borderRadius: 20, marginRight: 5}}/>
+                  <Text style={styles.videoText}>
+                    {item.snippet.title}
+                  </Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+          )}
+        </ScrollView>
+      </View>
+    );
+  }
+```
+I added a shorthand before the return that I use in the onPress attribute. I also removed the still works text.
+
+Now the only thing we have left is to use the videoId we pass to YouTubeVideo instead of the example one.
+Go back to YouTubeVideo.js and change VideoId to get the Id from props
+```javascript
+videoId={this.props.navigation.state.params.youtubeId}
+```
+
+DONE!?
+TODO?
+add search bar??
+Navigation ads a empty header, should put something or remove it?
 
 
