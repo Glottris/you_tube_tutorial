@@ -158,12 +158,11 @@ export default class App extends Component {
 ```
 We setup a constructor where we set the state to take a data array.
 state is used for data that will change in the app and when updated will trigger a re-render.
-
-after fetching that is an asynchronous action we populate a list of the items from the json, then we update the state thru the setState function, this will trigger a re-render of the component.
+After fetching which is an asynchronous action we populate a list with the items from the json, then we update the state thru the setState function, this will trigger a re-render of the component.
 
 Now we need to add something to our render function to see it on our device.  Lets add the thumbnail image from the fetched data.
 
-In the render function things inside curly-brackets are run as JavaScript. After the text tag add the following:
+In the render function things inside curly-brackets are run as JavaScript. After the text tag add the following function:
 ``` javascript
 {this.state.data.map((item, i) =>
  <Image
@@ -229,10 +228,12 @@ const styles = StyleSheet.create({
 ```
 We center align our whole app using a new style on our top View element. Make a new View element around the Image,  and put some padding between our video thumbnails. (the key warning is back so we move it to the top element returned by the map function)
 We also add the new objects to our styles constant and two unused formats **videoItems** and **videoText** that will be used for the video information bellow each video.
+
 ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example.JPG "Exsample")
 
 ### Video info
-create a new folder for assess in you project save this icon: ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/icon.jpg "Acorn-icon")
+Create a new folder for assess in you project save this icon: ![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/icon.jpg "Acorn-icon")
+
 Add this new view under the video thumbnail image tag.
 ```javascript
               <View style={styles.videoItems}>
@@ -245,8 +246,6 @@ Add this new view under the video thumbnail image tag.
               </View>
 ```
 now it should look something like this:
-![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example2.JPG "Exsample2")
 
-## Klick to play video
-...
+![alt text](https://github.com/Glottris/you_tube_tutorial/blob/master/assets/Example2.JPG "Exsample2")
 
