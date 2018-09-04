@@ -6,12 +6,21 @@ import YouTube from 'react-native-youtube';
 
 
 export class YouTubeVideo extends React.Component{
-
+  static navigationOption = {
+    headerTitle: 'YouTube',
+    headerStyle: {
+      backgroundColor: '#000'
+    },
+    headerTitleStyle: {
+      color: '#fff'
+    }
+  }
+  
   render() {
     return (
       <View style={styles.container}>
         <YouTube
-          videoId={this.props.navigation.state.params.youtubeId}   // The YouTube video ID
+          videoId='KVZ-P-ZI6W4'   // The YouTube video ID
           play={true}             // control playback of video with true/false
           fullscreen={true}       // control whether the video should play in fullscreen or inline
           loop={false}            // control whether the video should loop when ended

@@ -1,15 +1,16 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import { StyleSheet, Text, View,  WebView, Platform , Image, ScrollView } from 'react-native';
 import { YouTube } from 'react-native-youtube';
 import { createStackNavigator } from 'react-navigation';
+import { YouTubeVideo } from './YouTubeVideo'
 
 const apiKey = 'AIzaSyDNuniWTHCHeuq4ZxK-WWbO0pENHYMMCMs';
 const channelId = 'UCYGRnZ50MyvueoDN_Vo2PHA';
 const maxResults = '4';
 
 
-export default class App extends Component {
+class App extends Component {
   constructor(props){
     super(props)
     this.state = { data: [] }
@@ -27,6 +28,7 @@ export default class App extends Component {
   }
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.body}>
         <Text>still works!</Text>
@@ -79,4 +81,9 @@ const styles = StyleSheet.create({
     padding: 20,
     color: '#000'
   },
+});
+
+export default screens = createStackNavigator({
+  Home: { screen: App },
+  YouTubeVideo: { screen: YouTubeVideo }
 });

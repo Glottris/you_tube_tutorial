@@ -252,7 +252,7 @@ now it should look something like this:
 
 
 ## Klick to play video
-In this part we make klicking the thumbnail play the video in full-screen, and we add navigation so pressing the innate 'back button' will return you to the main screen of our app.
+In this part we make clicking the thumbnail play the video in full-screen, and we add navigation so pressing the innate 'back button' will return you to the main screen of our app.
 Start by creating a new file, I called mine YouTubeVideo.js
 it looks like this:
 ```javascript
@@ -293,6 +293,23 @@ const styles = StyleSheet.create({
 })
 ```
 We import the YouTube element from **react-native-youtube** that we installed in the beginning. We copy a object template from usage on this page: https://www.npmjs.com/package/react-native-youtube
-And add the API key element. The videoId is just an example for now we need to pass the videoId from our app element.
-All inside a view with a basic container style.
+And add the API key element. All inside a view with a basic container style. The videoId is just an example for now we need to pass the videoId from our app element.
+
+Before we do that add a static navigationOption in our component above our render function, setting our screen title to YouTube since we are going to use react-navigation.
+```javascript
+  static navigationOption = {
+    headerTitle: 'YouTube',
+    headerStyle: {
+      backgroundColor: '#000'
+    },
+    headerTitleStyle: {
+      color: '#fff'
+    }
+  }
+```
+Now lets go back to App.js and import our new component
+```javascript
+import { YouTubeVideo } from './YouTubeVideo'
+```
+
 
