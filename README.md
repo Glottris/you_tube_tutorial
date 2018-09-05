@@ -298,13 +298,13 @@ Now lets go back to App.js and import our new component
 ```javascript
 import { YouTubeVideo } from './YouTubeVideo'
 ```
-and also add **TouchableHighlight ** to our react-native imports, we will use this to make the video thumbnail clickable.
+and also add **TouchableHighlight** to our react-native imports, we will use this to make the video thumbnail clickable.
 ```javascript
 import { StyleSheet, Text, View,  WebView, Platform , Image, ScrollView, TouchableHighlight } from 'react-native';
 ```
 
 ### Navigation
-To use the navigation plugin we need remove `export default` from our App class and add export the following code instead.
+To use the navigation plugin we need remove `export default` from our App class and export the following code instead.
 put this bellow our styles constant.
 ```javascript
 export default screens = createStackNavigator({
@@ -344,7 +344,7 @@ render() {
     );
   }
 ```
-I added a shorthand before the return that I use in the onPress attribute. I also removed the still works text.
+I added a shorthand before the return that I use in the onPress attribute. I also removed the still works text and moved the key attribute.
 
 Now the only thing we have left is to use the videoId we pass to YouTubeVideo instead of the example one.
 Go back to YouTubeVideo.js and change VideoId to get the Id from props
