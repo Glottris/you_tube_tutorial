@@ -45,7 +45,7 @@ if you already have en emulator installed you can run one of thease oprions
 
 Otherwise we need to install one, android studio includes the android emulator. You can download and read how to install android Studio from here: https://developer.android.com/studio/
 
-Step by step using AndroidSrudio:
+Step by step using AndroidStudio:
 1. Open, android studio.
 2. Navigate to `File -> New -> Import project...` and browse to and select the android folder inside our project `.../you_tube_tutorial/android/`
 3. Now go to `Run -> Run 'App'` or press the green triangle to the top right. 
