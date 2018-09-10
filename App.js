@@ -36,7 +36,9 @@ class App extends Component {
           {this.state.data.map((item, i) =>
             <TouchableHighlight
               key={item.id.videoId}
-              onPress={() => navigate('YouTubeVideo', {youtubeId: item.id.videoId})}>
+              onPress={() => navigate('YouTubeVideo', {
+                youtubeId: item.id.videoId,
+                apiKey: apiKey})}>
               <View style={styles.videos}>
                 <Image
                   source={{uri: item.snippet.thumbnails.medium.url}}

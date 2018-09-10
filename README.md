@@ -344,7 +344,9 @@ render() {
           {this.state.data.map((item, i) =>
             <TouchableHighlight
               key={item.id.videoId}
-              onPress={() => navigate('YouTubeVideo', {youtubeId: item.id.videoId})}>
+              onPress={() => navigate('YouTubeVideo', {
+                youtubeId: item.id.videoId,
+                apiKey: apiKey})}>
               <View style={styles.videos}>
                 <Image
                   source={{uri: item.snippet.thumbnails.medium.url}}
@@ -367,10 +369,12 @@ render() {
 ```
 I added a shorthand before the return that I use in the onPress attribute. I also removed the still works text and moved the key attribute.
 
-Now the only thing we have left is to use the videoId we pass to YouTubeVideo instead of the example one.
-Go back to YouTubeVideo.js and change VideoId to get the Id from props
+Now the only thing we have left is to use the videoId and ApiKey we pass to YouTubeVideo instead of the example one.
+Go back to YouTubeVideo.js and change VideoId and ApiKey to get the Id from props
 ```javascript
 videoId={this.props.navigation.state.params.youtubeId}
+...
+apiKey={this.props.navigation.state.params.apiKey}
 ```
 Now my app look like this.
 
@@ -386,5 +390,4 @@ Navigation ads a empty header, should put something or remove it?
 
 all based on this:
 https://medium.com/react-native-training/react-native-youtube-replica-f378200d91f0
-
 

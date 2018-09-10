@@ -15,7 +15,7 @@ export class YouTubeVideo extends React.Component{
           play={true}             // control playback of video with true/false
           fullscreen={true}       // control whether the video should play in fullscreen or inline
           loop={false}            // control whether the video should loop when ended
-          apiKey={'AIzaSyDNuniWTHCHeuq4ZxK-WWbO0pENHYMMCMs'}
+          apiKey={this.props.navigation.state.params.apiKey}
           onReady={e => this.setState({ isReady: true })}
           onChangeState={e => this.setState({ status: e.state })}
           onChangeQuality={e => this.setState({ quality: e.quality })}
